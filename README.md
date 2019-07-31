@@ -62,6 +62,6 @@ flag turned on. You will see some debug logging done by the `KarmaJunitReporterT
 ## What Parameters Can Be Set For This Plugin?
 
 * `sonar.typescript.karmajstestdriver.reportsPath` must be set to a valid value in order for this plugin to take effect.
-    * set this configuration instead of `sonar.typescript.jstestdriver.reportsPath`  
+    * set this configuration instead of `sonar.javascript.jstestdriver.reportsPath`  
 * `sonar.karma.tests` must be set to a valid value in order for this plugin to take effect.
     * set this configuration as addition to `sonar.tests`

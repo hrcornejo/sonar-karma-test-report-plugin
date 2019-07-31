@@ -21,8 +21,9 @@
 	<version>1.0.0.4-TS</version>
 	<url>https://github.com/hrcornejo/sonar-karma-test-report-plugin/blob/master/README.md</url>
 	<name>JavaScript Karma Test Report :: Sonar Plugin</name>
-	<description>This is the SonarQube Karma JUnit Reporting plugin. It was created to facilitate publishing 
-  unit test (typescript) reports created using the karma-junit-reporter to SonarQube.</description>
+	<description>
+		This is the SonarQube Karma JUnit Reporting plugin. It was created to facilitate publishing unit test (typescript) reports created using the karma-junit-reporter to SonarQube.
+  	</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -1,5 +1,3 @@
-package com.solutions.it.exemplar;
-
 /*
  * SonarQube Karma Test Reporting Plugin
  * Copyright (C) 2015 Exemplar IT Solutions LLC and Anthony Watson
@@ -18,6 +16,8 @@ package com.solutions.it.exemplar;
  * You should have received a copy of the GNU General Public License
  * along with SonarQube Karma Test Reporting Plugin.  If not, see <http://www.gnu.org/licenses/>.
  */
+package com.solutions.it.exemplar;
+
 import java.util.ArrayList;
 import java.util.List;
 
