@@ -34,86 +34,93 @@ import org.slf4j.LoggerFactory;
  */
 public class SuiteUtil {
 
-  private static final String SUITE_REGEX = "^(describe\\((\\'|\\\")(.*)(\\'|\\\").*$)";
-  private static final Pattern SUITE_PATTERN = Pattern.compile(SUITE_REGEX);
-  private static final Logger LOG = LoggerFactory.getLogger(SuiteUtil.class);
+	private static final String SUITE_REGEX = "^(describe\\((\\'|\\\")(.*)(\\'|\\\").*$)";
+	private static final Pattern SUITE_PATTERN = Pattern.compile(SUITE_REGEX);
+	private static final Logger LOG = LoggerFactory.getLogger(SuiteUtil.class);
 
-  /**
-   * Returns the suite name, if it can be found in the spec file.
-   * @param file the spec file
-   * @return the suite name, if it can be found in the spec file or null
-   */
-  public String getSuiteName(final File file) {
+	/**
+	 * Returns the suite name, if it can be found in the spec file.
+	 * 
+	 * @param file
+	 *            the spec file
+	 * @return the suite name, if it can be found in the spec file or null
+	 */
+	public String getSuiteName(final File file) {
 
-    BufferedReader br = null;
-    try {
-      br = new BufferedReader(new FileReader(file));
-    } catch (FileNotFoundException e) {
-      LOG.warn("An error was thrown trying to read \"{}\"", file.getAbsolutePath(), e);
-    }
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(file));
+		} catch (FileNotFoundException e) {
+			LOG.warn("An error was thrown trying to read \"{}\"", file.getAbsolutePath(), e);
+		}
 
-    if (br == null) {
-      return null;
-    }
+		if (br == null) {
+			return null;
+		}
 
-    try {
+		try {
 
-      String line = br.readLine();
+			String line = br.readLine();
 
-      while(line != null){
+			while (line != null) {
 
-        String suiteName = getSuiteName(line);
-        if (suiteName != null) {
-          return suiteName;
-        }
-        line = br.readLine();
-      }
+				String suiteName = getSuiteName(line);
+				if (suiteName != null) {
+					return suiteName;
+				}
+				line = br.readLine();
+			}
 
-    } catch (IOException e) {
-      LOG.warn("An error was thrown trying to read " + file.getAbsolutePath(), e);
-    } finally {
-      if (br != null) {
-        try {
-          br.close();
-        } catch (IOException e) {
-          LOG.warn("An error was thrown trying to close the reader for " + file.getAbsolutePath(), e);
-        }
-      }
-    }
+		} catch (IOException e) {
+			LOG.warn("An error was thrown trying to read " + file.getAbsolutePath(), e);
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					LOG.warn("An error was thrown trying to close the reader for " + file.getAbsolutePath(), e);
+				}
+			}
+		}
 
-    return null;
-  }
+		return null;
+	}
 
-  /**
-   * Returns suite name based on spec file line or null if it cannot be found in the line supplied.
-   * @param line the spec file line
-   * @return suite name based on spec file line or null if it cannot be found in the line supplied
-   */
-  public String getSuiteName(final String line) {
+	/**
+	 * Returns suite name based on spec file line or null if it cannot be found in
+	 * the line supplied.
+	 * 
+	 * @param line
+	 *            the spec file line
+	 * @return suite name based on spec file line or null if it cannot be found in
+	 *         the line supplied
+	 */
+	public String getSuiteName(final String line) {
 
-    String suiteName = null;
-    String trimmedLine = line;
+		String suiteName = null;
+		String trimmedLine = line;
 
-    if (trimmedLine != null) {
-      trimmedLine = trimmedLine.trim();
-    }
+		if (trimmedLine != null) {
+			trimmedLine = trimmedLine.trim();
+		}
 
-    if (trimmedLine != null && trimmedLine.length() > 0) {
+		if (trimmedLine != null && trimmedLine.length() > 0) {
 
-      LOG.debug("Trying to get suite name from \"" + trimmedLine + "\"");
+			LOG.debug("Trying to get suite name from \"" + trimmedLine + "\"");
 
-      Matcher m = SUITE_PATTERN.matcher(trimmedLine);
+			Matcher m = SUITE_PATTERN.matcher(trimmedLine);
 
-      if (!m.matches()) {
-        LOG.debug("Regex could not find suite name: " + SUITE_REGEX);
-      } else if (m.groupCount() != 4) {
-        LOG.debug("Regex did not have the expected 4 groups. It only had " + m.groupCount() + "groups. Regex: " + SUITE_REGEX);
-      } else {
-        suiteName = m.group(3);
-      }
+			if (!m.matches()) {
+				LOG.debug("Regex could not find suite name: " + SUITE_REGEX);
+			} else if (m.groupCount() != 4) {
+				LOG.debug("Regex did not have the expected 4 groups. It only had " + m.groupCount() + "groups. Regex: "
+						+ SUITE_REGEX);
+			} else {
+				suiteName = m.group(3);
+			}
 
-    }
+		}
 
-    return suiteName;
-  }
+		return suiteName;
+	}
 }

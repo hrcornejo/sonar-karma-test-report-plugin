@@ -3,12 +3,8 @@ SonarQube Karma JUnit Reporting
 
 ## Purpose
 
-This is the SonarQube Karma JUnit Reporting plugin. It was created to facilitate publishing unit
-test reports created using the karma-junit-reporter to SonarQube.
-
-## Download
-
-The latest release of this plugin can be downloaded from https://oss.sonatype.org/content/groups/public/com/github/acwatson/sonar-karma-test-report-plugin/1.0.0.3/sonar-karma-test-report-plugin-1.0.0.3.jar
+This is the SonarQube Karma JUnit Reporting plugin. It was created to facilitate publishing unit test 
+(typescript) reports created using the karma-junit-reporter to SonarQube.
 
 ## Why Was This Plugin Created?
 
@@ -36,7 +32,7 @@ Looking inside that file, you will see content like:
 The problem lies in the classname that the karma-junit-reporter plugin sets for your 
 testcase. Notice above that the plugin has set the classname to `PhantomJS_1_9_8_(Mac_OS_X_0_0_0).service.myservice`. 
 The PhantomJS part of the classname is the browser that ran the tests and the rest comes from the name of your test 
-suite. In this example, imagine that we have a unit test file located at `service/myservice.spec.js` and that it defines
+suite. In this example, imagine that we have a unit test file located at `service/myservice.spec.ts` and that it defines
 the top-level test suite with `describe('service.myservice', function() {`. The karma-junit-reporter is basically 
 concatenating the browser name and the test suite name to come up with the classname. Unfortunately, SonarQube cannot 
 use this classname. SonarQube needs that name of the actual unit test file.
@@ -47,7 +43,7 @@ Instead of:
     
 SonarQube needs something like:
 
-    <testcase name="should do something cool" time="0.028" classname="src/app/service/myservice.spec.js"/>
+    <testcase name="should do something cool" time="0.028" classname="src/app/service/myservice.spec.ts"/>
 
 Basically, we need a way to map the test suite name to the actual unit test file name so that we can report
 the unit test file report to SonarQube. That is what this plugin does.
@@ -61,9 +57,11 @@ them to SonarQube.
 ## Log Output
 
 To troubleshoot or better understand what the SonarQube Karma JUnit Reporting plugin is doing, run Sonar with the debug
-flag turned on. You will see some debug logging done by the `KarmaJunitReporterJsTestDriverSensor`.
+flag turned on. You will see some debug logging done by the `KarmaJunitReporterTsTestDriverSensor`.
 
 ## What Parameters Can Be Set For This Plugin?
 
-* `sonar.javascript.karmajstestdriver.reportsPath` must be set to a valid value in order for this plugin to take effect.
-    * set this configuration instead of `sonar.javascript.jstestdriver.reportsPath`  
+* `sonar.typescript.karmajstestdriver.reportsPath` must be set to a valid value in order for this plugin to take effect.
+    * set this configuration instead of `sonar.typescript.jstestdriver.reportsPath`  
+* `sonar.karma.tests` must be set to a valid value in order for this plugin to take effect.
+    * set this configuration as addition to `sonar.tests`

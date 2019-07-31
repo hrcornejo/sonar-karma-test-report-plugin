@@ -26,31 +26,29 @@ import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.resources.Qualifiers;
 
 /**
- * Main plugin type that registers all of the plugin's extensions with SonarQube.
+ * Main plugin type that registers all of the plugin's extensions with
+ * SonarQube.
  */
 public class KarmaJunitReportPlugin extends SonarPlugin {
 
-  private static final String TEST_AND_COVERAGE = "Tests and Coverage";
+	private static final String TEST_AND_COVERAGE = "Tests and Coverage";
 
-  public static final String PROPERTY_PREFIX = "sonar.javascript";
-  public static final String REPORTS_PATH = PROPERTY_PREFIX + ".karmajstestdriver.reportsPath";
-  public static final String REPORTS_PATH_DEFAULT_VALUE = "";
+	public static final String PROPERTY_PREFIX = "sonar.typescript";
+	public static final String REPORTS_PATH = PROPERTY_PREFIX + ".karmatstestdriver.reportsPath";
+	public static final String REPORTS_PATH_DEFAULT_VALUE = "";
 
-  @SuppressWarnings({"unchecked", "rawtypes"})
-  @Override
-  public List getExtensions() {
-      List extensionList = new ArrayList();
-      extensionList.add(KarmaJunitReporterJsTestDriverSensor.class);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public List getExtensions() {
+		List extensionList = new ArrayList();
+		extensionList.add(KarmaJunitReporterTsTestDriverSensor.class);
 
-      //Add support for parameters
-      extensionList.add(PropertyDefinition.builder(REPORTS_PATH)
-            .defaultValue(REPORTS_PATH_DEFAULT_VALUE)
-            .name("JSTestDriver output folder")
-            .description("Folder where JsTestDriver unit test reports are located.")
-            .onQualifiers(Qualifiers.MODULE, Qualifiers.PROJECT)
-            .subCategory(TEST_AND_COVERAGE)
-            .build());
+		// Add support for parameters
+		extensionList.add(PropertyDefinition.builder(REPORTS_PATH).defaultValue(REPORTS_PATH_DEFAULT_VALUE)
+				.name("TSTestDriver output folder")
+				.description("Folder where TsTestDriver unit test reports are located.")
+				.onQualifiers(Qualifiers.MODULE, Qualifiers.PROJECT).subCategory(TEST_AND_COVERAGE).build());
 
-      return extensionList;
-  }
+		return extensionList;
+	}
 }
