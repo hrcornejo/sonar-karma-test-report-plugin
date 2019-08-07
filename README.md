@@ -3,7 +3,6 @@ SonarQube Karma JUnit Reporting
 
 [![Build Status](https://travis-ci.com/hrcornejo/sonar-karma-test-report-plugin.svg?branch=master)](https://travis-ci.com/hrcornejo/sonar-karma-test-report-plugin)
 
-
 ## Purpose
 
 This is the SonarQube Karma JUnit Reporting plugin. It was created to facilitate publishing unit test 
