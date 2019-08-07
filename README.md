@@ -2,6 +2,7 @@ SonarQube Karma JUnit Reporting
 ================
 
 [![Build Status](https://travis-ci.com/hrcornejo/sonar-karma-test-report-plugin.svg?branch=master)](https://travis-ci.com/hrcornejo/sonar-karma-test-report-plugin)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.github.acwatson%3Asonar-karma-test-report-plugin&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.acwatson%3Asonar-karma-test-report-plugin)
 
 ## Purpose
 
